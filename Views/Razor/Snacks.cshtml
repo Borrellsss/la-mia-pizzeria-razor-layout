@@ -1,0 +1,144 @@
+﻿@{
+    Layout = "_LayoutCustom";
+}
+<div class="container">
+    <div>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </div>
+
+    <div>
+        <h2>Snack 1</h2>
+
+        <p>
+            Dichiarare una variabile valorizzandola con il nostro nome. Dichiarare un'altra variabile valorizzandola con il nostro cognome. Stampare il nostro nome e cognome all'interno di un tag h2.
+        </p>
+
+        @{
+            string name = "Edoardo";
+            string lastName = "Borrello";
+        }
+
+        <div>@name @lastName</div>
+    </div>
+
+    <div>
+        <h2>Snack 2</h2>
+
+        <p>
+            Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso) Stampare dentro uno span il risultato.
+        </p>
+
+        @{
+            int CalcSum(int number) {
+                int sum = 0;
+
+                for (int i = 1; i < number; i++) {
+                    sum += i;
+                }
+
+                return sum;
+            }
+        }
+
+        <div>@CalcSum(5)</div>
+    </div>
+
+    <div>
+        <h2>Snack 3</h2>
+
+        <p>
+            Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina.
+        </p>
+
+        @{
+            int CalcCharNumberInString(char _char, string _string)
+            {
+                int counter = 0;
+
+                string stringFormatted = _string.ToLower();
+
+                for (int i = 0; i < stringFormatted.Length; i++)
+                {
+
+                    char currentChar = stringFormatted[i];
+
+                    if (currentChar == _char) {
+                        counter++;
+                    }
+                }
+
+                return counter;
+            }
+        }
+
+        <div>@CalcCharNumberInString('a', "nel mezzo del cammin di nostra vita")</div>
+    </div>
+
+    <div>
+        <h2>Snack 4</h2>
+
+        <p>
+            Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70.
+        </p>
+
+        @{
+            List<int> numbers = new List<int>();
+
+            for (int i = 0; i < 20; i++)
+            {
+                int randomNumber = new Random().Next(1, 90 + 1);
+
+                if (randomNumber >= 20 && randomNumber <= 70)
+                {
+                    numbers.Add(randomNumber);
+                }
+            }
+        }
+
+        <div>
+            <span>[</span>
+            @foreach(int number in numbers)
+            {
+                <span>@number,</span>
+            }
+            <span>]</span>
+        </div>
+    </div>
+
+    <div>
+        <h2>Snack 5</h2>
+
+        <p>
+            Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi.
+        </p>
+
+        <div>@DateTime.Now.ToString("yyyy/mm/dd HH:MM:ss")</div>
+    </div>
+
+    <div>
+        <h2>Snack 6</h2>
+
+        <p>
+            Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina:
+        </p>
+
+        <ul>
+            <li>
+                a. la data di 7 giorni fa:
+                <div style="color: red;">@DateTime.Now.AddDays(-7)</div>
+            </li>
+            <li>
+                b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...): 
+                <div style="color: red;">@DateTime.Now.DayOfWeek</div>
+            </li>
+            <li>
+                c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...):
+                <div style="color: red;">@DateTime.Now.AddYears(1).DayOfWeek</div>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </div>
+</div>
